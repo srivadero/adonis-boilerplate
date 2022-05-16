@@ -1,0 +1,52 @@
+@layout('layouts/main')
+
+@section('content')
+<div class="container mx-auto max-w-lg">
+
+       <h1 class="text-3xl my-4">Create</h1>
+
+       <form action="{{ route('crud.store') }}"
+             method="post">
+
+              {{ csrfField() }}
+
+              <div class="form-control">
+                     <label for="name"
+                            class="label">Name</label>
+                     <input type="text"
+                            class="input input-bordered"
+                            name="name"
+                            value="{{ flashMessages.get('name') || '' }}">
+                     <span class="label text-error">{{ flashMessages.get('errors.name') || '' }}</span>
+              </div>
+
+              <div class="form-control">
+                     <label for="description"
+                            class="label">Description</label>
+                     <input type="text"
+                            class="input input-bordered"
+                            name="description"
+                            value="{{ flashMessages.get('description') || '' }}">
+                     <span class="label text-error">{{ flashMessages.get('errors.description') || '' }}</span>
+              </div>
+
+              <div class="form-control">
+                     <label for="value"
+                            class="label">Value</label>
+                     <input type="text"
+                            class="input input-bordered"
+                            name="value"
+                            value="{{ flashMessages.get('value') || '' }}">
+                     <span class="label text-error">{{ flashMessages.get('errors.value') || '' }}</span>
+              </div>
+
+              <div class="mt-4">
+                     <button class="btn btn-primary"
+                             type="submit">OK</button>
+                     <a class="btn btn-ghost"
+                        href="{{ route('crud.index') }}">Cancel</a>
+              </div>
+       </form>
+
+</div>
+@endsection

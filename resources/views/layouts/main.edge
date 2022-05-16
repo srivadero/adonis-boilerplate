@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"
+      data-theme="{{ session.get('theme', 'light') }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    @entryPointScripts('app')
+    @entryPointStyles('app')
+</head>
+
+<body>
+
+    <nav class="navbar justify-between flex-wrap bg-base-200 shadow-lg z-[2000]"
+         x-data="{ bOpen : false }"
+         x-on:keydown.escape="bOpen = false">
+
+
+        <!--Logo -->
+        <a href="/"
+           class="btn btn-ghost normal-case text-xl">{{ app.helpers.string.capitalCase(app.appName) }}</a>
+
+
+        <!--Toggle button (hidden on large screens)-->
+        <button type="button"
+                class="btn btn-ghost lg:hidden"
+                :class="{ 'transition transform-180': bOpen }"
+                x-on:click.stop="bOpen = ! bOpen">
+
+            <!-- Heroicon menu -->
+            <svg x-show="!bOpen"
+                 xmlns="http://www.w3.org/2000/svg"
+                 class="h-6 w-6"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 stroke-width="2">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+
+            <!-- Heroicon close -->
+            <svg x-show="bOpen"
+                 xmlns="http://www.w3.org/2000/svg"
+                 class="h-6 w-6"
+                 fill="none"
+                 viewBox="0 0 24 24"
+                 stroke="currentColor"
+                 stroke-width="2">
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+
+        <!--Menu-->
+        <div class="w-full lg:w-auto lg:flex gap-1"
+             :class="{ 'block': bOpen, 'hidden': !bOpen }"
+             x-on:click.away="bOpen = false"
+             x-show.transition="true">
+            <a class="flex justify-start btn btn-ghost normal-case"
+               href="{{ route('crud.index') }}">Crud</a>
+            <div class="dropdown lg:dropdown-end flex">
+                <label tabindex="0"
+                       class="flex justify-start btn btn-ghost btn-block normal-case gap-2">
+                    {{ auth.isLoggedIn ? auth.user.username : 'User' }}
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="h-6 w-6"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor"
+                         stroke-width="2">
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M19 9l-7 7-7-7" />
+                    </svg>
+                </label>
+                <ul class="mt-12 p-2 shadow menu menu-compact dropdown-content bg-base-300 rounded-box w-64">
+                    @if(auth.isLoggedIn)
+                    <li><a href="{{ route('auth.logout') }}">Logout</a></li>
+                    @else
+                    <li><a href="{{ route('auth.login') }}">Login</a></li>
+                    <li><a href="{{ route('auth.register') }}">Register</a></li>
+                    @endif
+                    <li></li>
+                    <li><a href="{{ route('settings') }}">Settings</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="p-6 flex-grow">
+        @if(flashMessages.has('info'))
+        <div class="alert alert-info mx-auto max-w-lg"
+             x-data="{ open : true }"
+             x-show="open">
+            {{ flashMessages.get('info')}}
+            <button class="btn btn-square btn-sm"
+                    x-on:click="open = false">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                     class="h-6 w-6"
+                     fill="none"
+                     viewBox="0 0 24 24"
+                     stroke="currentColor"
+                     stroke-width="2">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        @endif
+
+        @!section('content')
+    </div>
+
+
+    @!section('scripts')
+</body>
+
+</html>
