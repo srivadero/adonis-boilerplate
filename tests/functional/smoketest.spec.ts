@@ -37,5 +37,10 @@ test.group('Database', () => {
     }
 
   })
+
+  test('login user', async({assert, client}) => {
+    const response = await client.post('/login').form({ uid: 'admin', password: 'admin'})
+    response.assertTextIncludes('admin')
+  })
   
 })
