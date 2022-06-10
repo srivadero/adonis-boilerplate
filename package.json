@@ -1,6 +1,6 @@
 {
   "name": "adonis-boilerplate",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "dev": "node ace serve --watch",
@@ -12,10 +12,12 @@
     "@japa/preset-adonis": "^1.0.16",
     "@japa/runner": "^2.0.8",
     "@symfony/webpack-encore": "^2.1.0",
+    "@types/jsdom": "^16.2.14",
     "adonis-preset-ts": "^2.1.0",
     "alpinejs": "^3.10.2",
     "autoprefixer": "^10.4.7",
     "daisyui": "^2.15.2",
+    "jsdom": "^19.0.0",
     "pino-pretty": "^8.0.0",
     "postcss": "^8.4.14",
     "postcss-loader": "^7.0.0",
