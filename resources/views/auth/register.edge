@@ -41,6 +41,16 @@
                      <span class="text-error">{{ flashMessages.get('errors.password') || '' }}</span>
               </div>
 
+              <div class="form-control">
+                     <label for="password_confirmation"
+                            class="label">Confirm Password</label>
+                     <input type="password"
+                            class="input input-bordered"
+                            name="password_confirmation"
+                            value="">
+                     <span class="text-error">{{ flashMessages.get('errors.password_confirmation') || '' }}</span>
+              </div>
+
               <div class="">
 
                      <button type="submit"
