@@ -83,6 +83,7 @@
                 </label>
                 <ul class="mt-12 p-2 shadow menu menu-compact dropdown-content bg-base-300 rounded-box w-64">
                     @if(auth.isLoggedIn)
+                    <li><a href="{{ route('auth.change.password.show') }}">Change Password</a></li>
                     <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                     @else
                     <li><a href="{{ route('auth.login') }}">Login</a></li>
