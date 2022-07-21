@@ -46,7 +46,9 @@ test.group('Auth', () => {
   })
 
   test('Register user', async ({ client, assert }) => {
-    const response = await client.post('/register').header('referrer', '/register').form({ username: 'newuser', email: 'newuser@email.com', password: 'admin' })
+    const response = await client.post('/register')
+      .header('referrer', '/register')
+      .form({ username: 'newuser', email: 'newuser@email.com', password: 'admin', password_confirmation: 'admin' })
     response.assertStatus(200)
 
     const { window } = new JSDOM(response.text())
