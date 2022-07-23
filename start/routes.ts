@@ -22,19 +22,19 @@ import Route from '@ioc:Adonis/Core/Route'
 
 // Auth module routes
 Route.group(() => {
-  Route.get('/logout', 'AuthController.logout').as('auth.logout')
-  Route.get('/change-password', 'AuthController.changePasswordShow').as('auth.change.password.show')
-  Route.post('/change-password', 'AuthController.changePassword').as('auth.change.password')
+  Route.get('/logout', 'Auth/LoginController.destroy').as('auth.logout')
+  Route.get('/change-password', 'Auth/ChangePasswordController.create').as('auth.change.password.show')
+  Route.post('/change-password', 'Auth/ChangePasswordController.store').as('auth.change.password')
 }).middleware('auth')
 
-Route.get('/register', 'AuthController.registerShow').as('auth.register.show')
-Route.post('/register', 'AuthController.register').as('auth.register')
-Route.get('/login', 'AuthController.loginShow').as('auth.login.show')
-Route.post('/login', 'AuthController.login').as('auth.login')
-Route.get('/forgot-password', 'AuthController.forgotPasswordShow').as('auth.forgot.password.show')
-Route.post('/forgot-password', 'AuthController.forgotPassword').as('auth.forgot.password')
-Route.get('/reset-password', 'AuthController.resetPasswordShow').as('auth.reset.password.show')
-Route.post('/reset-password', 'AuthController.resetPassword').as('auth.reset.password')
+Route.get('/register', 'Auth/RegisterController.create').as('auth.register.show')
+Route.post('/register', 'Auth/RegisterController.store').as('auth.register')
+Route.get('/login', 'Auth/LoginController.create').as('auth.login.show')
+Route.post('/login', 'Auth/LoginController.store').as('auth.login')
+Route.get('/forgot-password', 'Auth/ForgotPasswordController.create').as('auth.forgot.password.show')
+Route.post('/forgot-password', 'Auth/ForgotPasswordController.store').as('auth.forgot.password')
+Route.get('/reset-password', 'Auth/ResetPasswordController.create').as('auth.reset.password.show')
+Route.post('/reset-password', 'Auth/ResetPasswordController.store').as('auth.reset.password')
 
 // Settings
 Route.get('settings', async ({ view }) => { return view.render('settings') }).as('settings')
