@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
-    "test": "echo 'Error: no test specified' && exit 1",
+    "test": "node ace test",
+    "test.old": "echo 'Error: no test specified' && exit 1",
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
